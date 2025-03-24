@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Question {{ question.id }}{% endblock %}
+{% block content %}
+    <div id="question">
+        <div>
+            {% if question %}
+                {% if question.prev_id != None %}
+                    <a href="/questions/{{ question.prev_id }}/?unsentimented={{ unsentimented }}">Previous</a>
+                {% endif %}
+                Question {{ participant.id }}
+                {% if question.next_id != None %}
+                    <a href="/questions/{{ question.next_id }}/?unsentimented={{ unsentimented }}">Next</a>
+                {% endif %}
+            {% else %}
+                No question with that ID.
+            {% endif %}
+            <form action="/questions/{{ question.id }}/?unsentimented={{ unsentimented }}"
+                  method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div>
+            <div class="question_large">{{ question.id }}: {{ question.text }}</div>
+            {% if answers %}
+                <ul>
+                    {% for answer in answers %}
+                        <li>
+                            <a href="/participants/{{ answer.participant.id }}/">{{ answer.participant.id }}</a>:
+                            <a href="/answers/{{ answer.id }}/">{{ answer.answer_text }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No answers are available.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Question {{ question.id }}{% endblock %}
+{% block content %}
+    {% if participants %}
+        <ul>
+            {% for participant in participants %}
+                <li>
+                    <a href="/participants/{{ participant.id }}/">{{ participant.id }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No participants are available.</p>
+    {% endif %}
+{% endblock %}

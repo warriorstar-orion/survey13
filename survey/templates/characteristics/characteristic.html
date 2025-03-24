@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Cohort: {{ cohort.name }}{% endblock %}
+{% block content %}
+    Characteristic: {{ cohort.characteristic.name }}
+    Cohorts:
+    <ul>
+        {% for cohort in characteristic.cohort_set.all %}
+            <li>
+                <a href="/cohorts/{{ cohort.id }}/">{{ cohort.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <ul>
+    </ul>
+{% endblock %}

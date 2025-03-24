@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Cohort: {{ characteristic.name }}{% endblock %}
+{% block content %}
+    Grouping: {{ characteristic.name }}
+    <br />
+    Cohort: {{ cohort.name }}
+    <br />
+    Participants:
+    <ul>
+        {% for participant in participants %}
+            <li>
+                <a href="/participants/{{ participant.id }}/">{{ participant }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Sentiment: {{ sentiment.summary }}{% endblock %}
+{% block content %}
+    <h1>Sentiment: {{ sentiment }}</h1>
+    <table class="sentiments">
+        {% for answer in sentiment.answer_set.all %}
+            <tr>
+                <td>
+                    <a href="/participants/{{ answer.participant_id }}/">{{ answer.participant }}</a>
+                </td>
+                <td>
+                    <a href="/questions/{{ answer.question_id }}/">{{ answer.question }}</a>: <b>{{ answer.question.text }}</b>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a href="/answers/{{ answer.pk }}">Answer</a>: {{ answer.answer_text|linebreaks }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

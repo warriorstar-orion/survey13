@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Cohorts{% endblock %}
+{% block content %}
+    {% if characteristics %}
+        <ul>
+            {% for characteristic in characteristics %}
+                <li>
+                    <a href="/characteristics/{{ characteristic.id }}/">{{ characteristic.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No cohorts are available.</p>
+    {% endif %}
+{% endblock %}

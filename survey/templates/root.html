@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <form action="{% url 'answer_search_results' %}" method="get">
+        <input name="q" type="text" placeholder="Search Answers...">
+    </form>
+    <div>
+        <a href="/answers/open_ended/?page=1&unsentimented=1">Unsentimented Answers</a>
+    </div>
+{% endblock %}

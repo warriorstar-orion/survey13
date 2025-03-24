@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Search Results{% endblock %}
+{% block content %}
+    <h1>Search Results</h1>
+    (<a href="/answers/search/?q={{ q }}&unsentimented=1">Unsentimented</a>)
+    <ul>
+        {% for answer in object_list %}
+            <li>
+                Participant: <a href="/participants/{{ answer.participant_id }}/">{{ answer.participant }}</a>
+                <br />
+                Question {{ answer.question_id }}: <a href="/questions/{{ answer.question_id }}/">{{ answer.question.text }}</a>
+                <br />
+                <a href="/answers/{{ answer.pk }}">{{ answer.answer_text }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

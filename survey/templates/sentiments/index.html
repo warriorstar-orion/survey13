@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Sentiments{% endblock %}
+{% block content %}
+    {% if categories %}
+        <ul>
+            {% for category in categories %}
+                <h1>{{ category.name }}</h1>
+                {% for sentiment in category.sentiment_set.all|dictsort:"summary" %}
+                    <li>
+                        <a href="/sentiments/{{ sentiment.id }}/">{{ sentiment.summary }}</a> ({{ sentiment.answer_set.count }})
+                    </li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% elif sentiments %}
+        <ul>
+            {% for sentiment in sentiments %}
+                <li>
+                    <a href="/sentiments/{{ sentiment.id }}/">{{ sentiment }}</a> ({{ sentiment.answer_set.count }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

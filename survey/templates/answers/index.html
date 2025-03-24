@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Answers{% endblock %}
+{% block content %}
+    {% if object_list %}
+        <table class="sentiments">
+            {% for answer in object_list %}
+                <tr>
+                    <td>
+                        <a href="/participants/{{ answer.participant_id }}">{{ answer.participant }}</a>: <a href="/answers/{{ answer.id }}/">Answer {{ answer.id }}</a>:
+                    </td>
+                    <td>
+                        <a href="/questions/{{ answer.question.pk }}/">{{ answer.question }}</a> <b>{{ answer.question.text }}</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">{{ answer.answer_text|linebreaks }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1&unsentimented={{ unsentimented }}">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}&unsentimented={{ unsentimented }}">previous</a>
+                {% endif %}
+                <span class="current">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}&unsentimented={{ unsentimented }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}&unsentimented={{ unsentimented }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    {% else %}
+        <p>No answers are available.</p>
+    {% endif %}
+{% endblock %}

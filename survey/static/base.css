@@ -1,0 +1,57 @@
+html {
+  font-family: Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans", source-sans-pro, sans-serif;
+  font-weight: normal;
+  width: 90%;
+  margin: 0 auto;
+}
+header {
+  margin: 1em;
+}
+header .large {
+  font-size: 2em;
+}
+
+header a {
+    text-decoration: none;
+    color:#206aaa;
+}
+
+a {
+  color: #206aaa;
+}
+
+
+#participant, #answer, #question {
+    display: grid;
+    grid-template-columns: 25% 75%;
+  }
+
+.sideform {
+  margin: 1em;
+}
+
+fieldset {
+  height: 400px;
+  overflow:scroll;
+}
+
+.question_large {
+  font-size: 1.5em;
+}
+
+li {
+  padding-top: 4px;
+}
+table.sentiments td {
+  padding: 4px;
+  border: 1px solid #ccc;
+}
+
+table.questions td {
+  padding: 4px;
+  border: 1px solid #aaa;
+}
+
+header form {
+  display: inline;
+}

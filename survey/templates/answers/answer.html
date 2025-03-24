@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Answer {{ answer.id }}{% endblock %}
+{% block content %}
+    <div id="answer">
+        <div class="sideform">
+            {% if is_superuser %}
+                <form action="/answers/{{ answer.id }}/" method="post">
+                    {% csrf_token %}
+                    <input name="sentiment_filter" type="search" placeholder="Filter...">
+                    {{ form }}
+                    <input type="submit" value="Submit">
+                </form>
+            {% endif %}
+        </div>
+        <div>
+            <a href="/participants/{{ answer.participant.id }}/">{{ answer.participant }}</a>
+            <br />
+            Question {{ answer.question_id }}: <b><a href="/questions/{{ answer.question_id }}/">{{ answer.question.text }}</a></b>
+            <br />
+            {{ answer.answer_text|linebreaks }}
+        </div>
+    </div>
+{% endblock %}

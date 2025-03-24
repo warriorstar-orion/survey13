@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Question {{ question.id }}{% endblock %}
+{% block content %}
+    {% if questions %}
+        <table class="questions">
+            {% for question in questions %}
+                <tr>
+                    <td>
+                        <div>
+                            <a href="/questions/{{ question.id }}/">{{ question }}</a>:
+                            {% if question.kind == "OPEN_ENDED" %}
+                                (<a href="/questions/{{ question.id }}/?unsentimented=1">unsentimented answers</a>)
+                            {% endif %}
+                        </div>
+                        {{ question.text }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No questions are available.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+        <link rel="stylesheet" href="{% static 'base.css' %}" media="screen">
+        <script type="text/javascript"
+                src="{% static 'sentiment_search_filter.js' %}"></script>
+    </head>
+    <body>
+        <header>
+            <a class="large" href="/questions/">Questions</a> (<a href="/questions/open_ended/">open-ended</a>) &bullet;
+            <a class="large" href="/answers/">Answers</a> (<a href="/answers/open_ended/">open-ended</a> &bullet; <a href="/answers/open_ended/?unsentimented=1">unsentimented</a>) &bullet;
+            <a class="large" href="/sentiments/">Sentiments</a>
+            {% if user.is_authenticated %}
+            logged in as {{ user.username }} (<form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit">logout</button></form>)
+            {% endif %}
+        </header>
+        {% block content %}{% endblock %}
+    </body>
+</html>
